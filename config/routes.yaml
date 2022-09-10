@@ -1,0 +1,15 @@
+# config/routes.yaml
+app_front_routing:
+    # loads routes from the YAML or XML files found in that directory
+    resource: 'routes/front'
+    type:     directory
+    
+app_back_routing:
+    # loads routes from the YAML or XML files found in that directory
+    resource: 'routes/back'
+    type:     directory
+    
+app_api_routing:
+    # loads routes from the YAML or XML files found in that directory
+    resource: 'routes/api'
+    type:     directory
