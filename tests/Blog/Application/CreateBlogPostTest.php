@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Tests\Blog\Application;
 
-use App\Blog\Application\CreateBlogPost\BlogPostCommand;
-use App\Blog\Application\CreateBlogPost\BlogPostCommandHandler;
-use App\Blog\Application\CreateBlogPost\BlogPostCreator;
+use App\Blog\Application\AddBlogPost\AddBlogPostCommand;
+use App\Blog\Application\AddBlogPost\AddBlogPostCommandHandler;
+use App\Blog\Application\AddBlogPost\BlogPostCreator;
 use App\Blog\Domain\Entity\BlogPost;
 use App\Blog\Infrastructure\Repository\InMemoryBlogPostRepository;
 use App\Shared\Infrastructure\Entity\Uuid;
@@ -34,8 +34,8 @@ class CreateBlogPostTest extends TestCase
     {
         $repository = new InMemoryBlogPostRepository();
         $uuid = new Uuid();
-        $commandHandler = new BlogPostCommandHandler(new BlogPostCreator($repository, $uuid));
-        $blogPostCommand = new BlogPostCommand();
+        $commandHandler = new AddBlogPostCommandHandler(new BlogPostCreator($repository, $uuid));
+        $blogPostCommand = new AddBlogPostCommand();
         $blogPostCommand->title = 'Test title';
 
         try {

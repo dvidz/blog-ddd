@@ -6,7 +6,6 @@ namespace App\Shared\Infrastructure\Symfony\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Abstract class BaseRepository.

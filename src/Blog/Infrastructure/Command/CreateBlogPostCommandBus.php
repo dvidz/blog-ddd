@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Blog\Infrastructure\Api\Command;
+namespace App\Blog\Infrastructure\Command;
 
 use App\Shared\Domain\Command\Command;
 use App\Shared\Domain\Command\CommandBus;

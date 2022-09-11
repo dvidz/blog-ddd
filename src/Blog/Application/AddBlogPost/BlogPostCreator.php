@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Blog\Application\CreateBlogPost;
+namespace App\Blog\Application\AddBlogPost;
 
 use App\Blog\Domain\Entity\BlogPost;
 use App\Blog\Domain\Repository\CreateBlogPostRepository as DomainCreateBlogPostRepository;
@@ -26,6 +26,7 @@ class BlogPostCreator
 
     /**
      * @param DomainCreateBlogPostRepository $blogPostRepository
+     * @param Uuid                           $uuid
      */
     public function __construct(DomainCreateBlogPostRepository $blogPostRepository, Uuid $uuid)
     {
@@ -34,11 +35,11 @@ class BlogPostCreator
     }
 
     /**
-     * @param BlogPostCommand $blogPostCommand
+     * @param AddBlogPostCommand $blogPostCommand
      *
      * @return bool
      */
-    public function blogPost(BlogPostCommand $blogPostCommand): bool
+    public function blogPost(AddBlogPostCommand $blogPostCommand): bool
     {
         try {
             $blogPost = BlogPost::blogPost($this->uuid, $blogPostCommand->title);

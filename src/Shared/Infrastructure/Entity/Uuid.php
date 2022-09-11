@@ -4,11 +4,12 @@ namespace App\Shared\Infrastructure\Entity;
 
 use \App\Shared\Domain\Entity\ValueObject\Uuid as DomainUuid;
 use Ramsey\Uuid\Uuid as RamseyUuid;
+use Stringable;
 
 /**
  * Class Uuid.
  */
-class Uuid implements DomainUuid, \Stringable
+class Uuid implements DomainUuid, Stringable
 {
     /**
      * @var string

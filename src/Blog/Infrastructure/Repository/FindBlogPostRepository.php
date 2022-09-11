@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Blog\Infrastructure\Repository;
 
 use App\Blog\Domain\Entity\BlogPost;
-use \App\Blog\Domain\Repository\FindBlogPostRepository as DomainFindBlogRepository;
+use App\Blog\Domain\Repository\FindBlogPostRepository as DomainFindBlogRepository;
 use App\Shared\Infrastructure\Symfony\Repository\BaseRepository;
 
 /**
@@ -13,13 +13,10 @@ use App\Shared\Infrastructure\Symfony\Repository\BaseRepository;
  */
 class FindBlogPostRepository extends BaseRepository implements DomainFindBlogRepository
 {
-
     /**
-     * @param int $limit
-     *
      * @return BlogPost[]
      */
-    public function findBlogPost(int $limit): array
+    public function findBlogPost(): array
     {
         return $this->findAll();
     }

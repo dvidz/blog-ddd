@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Blog\Infrastructure\Api\Controller;
 
-use App\Blog\Application\CreateBlogPost\BlogPostCommand;
+use App\Blog\Application\AddBlogPost\AddBlogPostCommand;
 use App\Shared\Domain\Command\CommandBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -38,7 +38,7 @@ class CreateBlogPostController extends AbstractController
             'title' => 'Titre de ouf',
         ];
 
-        $blogPostCommand = $this->serializer->denormalize($data, BlogPostCommand::class);
+        $blogPostCommand = $this->serializer->denormalize($data, AddBlogPostCommand::class);
 
         try {
             $this->commandBus->dispatch($blogPostCommand);

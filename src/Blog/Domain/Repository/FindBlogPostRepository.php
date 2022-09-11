@@ -12,9 +12,7 @@ use App\Blog\Domain\Entity\BlogPost;
 interface FindBlogPostRepository
 {
     /**
-     * @param int $limit
-     *
      * @return BlogPost[]
      */
-    public function findBlogPost(int $limit): array;
+    public function findBlogPost(): array;
 }

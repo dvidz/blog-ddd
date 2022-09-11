@@ -13,4 +13,9 @@ interface Response
      * @return array
      */
     public function respond(): array;
+
+    /**
+     * @return array|null
+     */
+    public function exceptions(): ?array;
 }

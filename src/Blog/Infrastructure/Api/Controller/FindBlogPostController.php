@@ -4,16 +4,13 @@ declare(strict_types=1);
 
 namespace App\Blog\Infrastructure\Api\Controller;
 
-use App\Blog\Application\CreateBlogPost\BlogPostCommand;
 use App\Blog\Application\FindBlogPost\FindBlogPostQuery;
-use App\Blog\Domain\Entity\BlogPost;
-use App\Blog\Infrastructure\Api\Query\FindBlogPostQueryBus;
+use App\Blog\Infrastructure\Query\FindBlogPostQueryBus;
+use App\Blog\Infrastructure\Ui\Presenter\BlogPostListJsonPresenter;
+use App\Blog\Infrastructure\Ui\View\BlogPostListJsonView;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Class FindBlogPostController.
@@ -21,10 +18,15 @@ use Symfony\Component\Serializer\SerializerInterface;
 class FindBlogPostController extends AbstractController
 {
     /**
-     * @param FindBlogPostQueryBus $queryBus
+     * @param FindBlogPostQueryBus      $queryBus
+     * @param BlogPostListJsonView      $view
+     * @param BlogPostListJsonPresenter $presenter
      */
-    public function __construct(private FindBlogPostQueryBus $queryBus, private SerializerInterface $serializer)
-    {
+    public function __construct(
+        private FindBlogPostQueryBus $queryBus,
+        private BlogPostListJsonView $view,
+        private BlogPostListJsonPresenter $presenter
+    ) {
 
     }
 
@@ -35,9 +37,10 @@ class FindBlogPostController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
-        $blogPosts = $this->queryBus->ask(new FindBlogPostQuery())
-            ->respond();
+        $this->presenter->present(
+            $this->queryBus->ask(new FindBlogPostQuery())
+        );
 
-        return new JsonResponse($blogPosts, Response::HTTP_OK);
+        return $this->view->generateView($this->presenter->viewModel());
     }
 }

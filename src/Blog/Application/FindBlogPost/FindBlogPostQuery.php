@@ -11,5 +11,5 @@ use App\Shared\Domain\Query\Query;
  */
 class FindBlogPostQuery implements Query
 {
-    const LIMIT = 10;
+
 }

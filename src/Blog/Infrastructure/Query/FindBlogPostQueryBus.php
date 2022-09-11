@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Blog\Infrastructure\Api\Query;
+namespace App\Blog\Infrastructure\Query;
 
 use App\Shared\Domain\Query\Query;
 use App\Shared\Domain\Query\QueryBus;

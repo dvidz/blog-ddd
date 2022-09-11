@@ -28,8 +28,12 @@ class FindBlogPostQueryHandler implements QueryHandler
      */
     public function __invoke(FindBlogPostQuery $blogPostQuery): Response
     {
-        $blogPosts = $this->findBlogPostRepository->findBlogPost($blogPostQuery::LIMIT);
+        try {
+            $blogPosts = $this->findBlogPostRepository->findBlogPost();
+        } catch (\Exception $e) {
+            return new FindBlogPostListResponse(null, [$e]);
+        }
 
-        return new FindBlogPostResponse($blogPosts);
+        return new FindBlogPostListResponse($blogPosts);
     }
 }
