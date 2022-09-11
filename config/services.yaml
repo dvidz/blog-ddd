@@ -22,3 +22,22 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+        
+    ###> bus ###
+    _instanceof:
+        # All services implementing the CommandHandler interface from the domain
+        # will be registered on the command.bus bus who he's apply the transactional middleware "doctrine_transaction".
+        # @see config/package/messenger.yaml
+        App\Shared\Domain\Command\CommandHandler:
+            tags:
+                - { name: messenger.message_handler, bus: command.bus }
+                    
+        # All services implementing the QueryHandler interface from the domain
+        # will be registered on the query.bus bus who he's apply the stack middleware dedicated to query.bus.
+        # @see apps/api/config/package/messenger.yaml
+        App\Shared\Domain\Query\QueryHandler:
+            tags:
+                - { name: messenger.message_handler, bus: query.bus }
+        
+    ###> repository aliases ###
+    App\Blog\Domain\Repository\CreateBlogPostRepository: '@App\Blog\Infrastructure\Repository\CreateBlogPostRepository'
