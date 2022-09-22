@@ -53,8 +53,8 @@ class CreateBlogPostTest extends TestCase
      *
      * @return BlogPost
      */
-    private function createBlogPost(string $title)
+    private function createBlogPost(string $title): BlogPost
     {
-        return BlogPost::blogPost(new Uuid(),$title);
+        return BlogPost::blogPost(new Uuid(), $title);
     }
 }

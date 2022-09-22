@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Blog\Domain\Entity;
 
+use App\Blog\Domain\Entity\ValueObject\Title;
 use App\Shared\Domain\Entity\AggregateRoot;
 use App\Shared\Domain\Entity\ValueObject\Uuid;
 
@@ -13,10 +14,10 @@ use App\Shared\Domain\Entity\ValueObject\Uuid;
 class BlogPost extends AggregateRoot
 {
     /**
-     * @param Uuid   $uuid
-     * @param string $title
+     * @param Uuid  $uuid
+     * @param Title $title
      */
-    private function __construct(Uuid $uuid, protected string $title)
+    private function __construct(Uuid $uuid, protected Title $title)
     {
         parent::__construct($uuid);
     }
@@ -29,7 +30,7 @@ class BlogPost extends AggregateRoot
      */
     public static function blogPost(Uuid $uuid, string $title): self
     {
-        return new self($uuid, $title);
+        return new self($uuid, new Title($title));
     }
 
     /**
@@ -37,6 +38,6 @@ class BlogPost extends AggregateRoot
      */
     public function title(): string
     {
-        return $this->title;
+        return $this->title->value();
     }
 }
