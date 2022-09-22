@@ -1,0 +1,4 @@
+create_blog:
+    path: /api/blog
+    controller: App\Blog\Infrastructure\Api\Controller\FindBlogPostController
+    methods: GET
